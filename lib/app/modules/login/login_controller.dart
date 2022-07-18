@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../data/model/auth_model.dart';
+import '../../routes/app_routes.dart';
 
 class LoginController extends GetxController {
     final repository = Get.find<AuthRepository>();
@@ -25,10 +26,14 @@ class LoginController extends GetxController {
         // ignore: deprecated_member_use
         if(!auth.isNull){
           box.write('auth',auth);
-          Get.offAllNamed('/home');
+          Get.offAllNamed(Routes.HOME);
         }
         loading.value = false;
       }
+    }
+
+    void toRegister(){
+      Get.offAndToNamed(Routes.SIGNUP);
     }
 
 }

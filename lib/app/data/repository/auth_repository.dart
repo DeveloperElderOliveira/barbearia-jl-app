@@ -1,8 +1,6 @@
 
 import 'package:barbearia_jl_app/app/data/model/auth_model.dart';
 import 'package:barbearia_jl_app/app/data/provider/auth_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../model/user_model.dart';
 

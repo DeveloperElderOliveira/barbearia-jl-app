@@ -11,8 +11,6 @@ import '../../../global/widgets/rounded_input_field.dart';
 import '../../../global/widgets/rounded_password_field.dart';
 import '../controllers/signup_controller.dart';
 import '../widgets/background.dart';
-import '../widgets/or_divider.dart';
-import '../widgets/social_icons.dart';
 
 // ignore: use_key_in_widget_constructors
 class SignupView extends GetView<SignupController> {
@@ -90,19 +88,19 @@ class SignupView extends GetView<SignupController> {
               AlreadyHaveAnAccountCheck(
                 login: false,
                 press: () {
-                  Get.toNamed('/login');
+                  controller.toLogin();
                 },
               ),
-              OrDivider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SocalIcon(
-                    iconSrc: "assets/google-plus.svg",
-                    press: () {},
-                  ),
-                ],
-              )
+              // OrDivider(),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: <Widget>[
+              //     SocalIcon(
+              //       iconSrc: "assets/google-plus.svg",
+              //       press: () {},
+              //     ),
+              //   ],
+              // )
             ],
           ),
         ),

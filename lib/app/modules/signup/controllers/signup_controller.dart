@@ -1,3 +1,4 @@
+import 'package:barbearia_jl_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,9 +25,14 @@ class SignupController extends GetxController {
         });  
        // ignore: deprecated_member_use
        if (!user.isNull){
-          Get.offAllNamed('/login');
+          Get.offAllNamed(Routes.LOGIN);
        }        
      loading.value = false;
   }
+}
+
+void toLogin()
+{
+  Get.toNamed(Routes.LOGIN);
 }
 }
