@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
         children: [
           Obx(() => Visibility(
               visible: controller.selectedIndex.value == 0,
-              child: const Page1())),
+              child: Page1())),
           Obx(() => Visibility(
               visible: controller.selectedIndex.value == 1,
               child: const Page2())),
