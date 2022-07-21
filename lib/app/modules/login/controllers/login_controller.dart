@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../data/model/auth_model.dart';
-import '../../routes/app_routes.dart';
+import '../../../data/model/auth_model.dart';
+import '../../../routes/app_routes.dart';
 
 class LoginController extends GetxController {
     final repository = Get.find<AuthRepository>();
@@ -20,15 +20,15 @@ class LoginController extends GetxController {
     void login() async{
       if (formkey.currentState.validate()){
         loading.value = true;
-        var auth = await repository.login(emailCtrl.text, passwordCtrl.text).catchError((e){
-          loading.value = false;
-        });
-        // ignore: deprecated_member_use
-        if(!auth.isNull){
-          box.write('auth',auth);
+        await repository.login(emailCtrl.text, passwordCtrl.text).then((auth){
+        if(auth != null){
+          box.write('auth', auth);
           Get.offAllNamed(Routes.HOME);
         }
         loading.value = false;
+      }).catchError((err){
+        loading.value = false;
+      });
       }
     }
 

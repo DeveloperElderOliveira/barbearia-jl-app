@@ -1,10 +1,10 @@
-import 'package:barbearia_jl_app/app/modules/welcome/welcome_controller.dart';
-import 'package:barbearia_jl_app/app/modules/welcome/widgets/background.dart';
+import 'package:barbearia_jl_app/app/modules/welcome/controllers/welcome_controller.dart';
+import 'package:barbearia_jl_app/app/modules/welcome/views/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../global/widgets/rounded_button.dart';
+import '../../../global/widgets/rounded_button.dart';
 
 // ignore: use_key_in_widget_constructors
 class WelcomeView extends GetView<WelcomeController> {

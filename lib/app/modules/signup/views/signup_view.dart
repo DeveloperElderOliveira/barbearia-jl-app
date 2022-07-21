@@ -10,7 +10,7 @@ import '../../../global/widgets/rounded_button.dart';
 import '../../../global/widgets/rounded_input_field.dart';
 import '../../../global/widgets/rounded_password_field.dart';
 import '../controllers/signup_controller.dart';
-import '../widgets/background.dart';
+import '../views/widgets/background.dart';
 
 // ignore: use_key_in_widget_constructors
 class SignupView extends GetView<SignupController> {

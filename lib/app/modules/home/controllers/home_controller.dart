@@ -23,9 +23,9 @@ class HomeController extends GetxController {
     NavigationItem(const Icon(Icons.person_outline), const Text('Perfil'), Colors.teal)
   ];
 
-  // Page1
+  // Page 1
   RxList<Schedule> listSchedules = <Schedule>[].obs;
-
+  
   @override
   void onInit() {
     loadData();
@@ -33,8 +33,7 @@ class HomeController extends GetxController {
   }
 
   void loadData() async{
-    // ignore: deprecated_member_use, invalid_use_of_protected_member
-    listSchedules.value = await repository.getAll();
+    listSchedules.assignAll(await repository.getAll());
   }
 
   void choiceIndex(int index){

@@ -9,13 +9,13 @@ class AuthRepository {
 final AuthApiClient apiClient = AuthApiClient();
 
   Future<Auth> login(String email,String password) async{
-    Map<String, dynamic> json = await apiClient.login(email, password);
+    Map json = await apiClient.login(email, password);
     return Auth.fromJson(json);
   }
 
   Future<User> register(String name,String email,String password) async{
-    Map<String, dynamic> json = await apiClient.register(name,email,password);
-    return User.fromJson(json);
+    Map json = await apiClient.register(name,email,password);
+    return User.fromJson(json['user']);
   }
 
 }

@@ -1,15 +1,15 @@
 // ignore_for_file: avoid_print, deprecated_member_use
 
-import 'package:barbearia_jl_app/app/modules/login/login_controller.dart';
+import 'package:barbearia_jl_app/app/modules/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../global/widgets/already_have_an_account_acheck.dart';
-import '../../global/widgets/rounded_button.dart';
-import '../../global/widgets/rounded_input_field.dart';
-import '../../global/widgets/rounded_password_field.dart';
-import '../login/widgets/background.dart';
+import '../../../global/widgets/already_have_an_account_acheck.dart';
+import '../../../global/widgets/rounded_button.dart';
+import '../../../global/widgets/rounded_input_field.dart';
+import '../../../global/widgets/rounded_password_field.dart';
+import '../views/widgets/background.dart';
 
 // ignore: use_key_in_widget_constructors
 class LoginView extends GetView<LoginController> {

@@ -1,6 +1,8 @@
+
+import 'package:barbearia_jl_app/app/data/provider/schedule_provider.dart';
 import 'package:get/get.dart';
+
 import '../model/schedule_model.dart';
-import '../provider/schedule_provider.dart';
 
 class ScheduleRepository {
 
@@ -8,9 +10,9 @@ final ScheduleApiClient apiClient = Get.find<ScheduleApiClient>();
 
 getAll() async{
   List<Schedule> list = <Schedule>[];
-  var response = await apiClient.getAll(); 
-
-  response.forEach((e){ 
+  var response = await apiClient.getAll();
+  response.forEach((e) {
+    // print(Schedule.fromJson(e).toJson()); 
     list.add(Schedule.fromJson(e));
   });
 
