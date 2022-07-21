@@ -60,7 +60,7 @@ class Page1 extends StatelessWidget {
                                     ),),
                                     SizedBox(width: 5,),
                                     Row(
-                                      children: (List.generate(5, (i) => i + 1)).map((e){
+                                      children: (List<int>.generate(5, (i) => i + 1)).map((e){
                                         return Icon(Icons.star);
                                       }).toList(),
                                     ),

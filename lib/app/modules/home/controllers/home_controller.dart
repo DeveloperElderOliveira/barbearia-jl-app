@@ -1,3 +1,4 @@
+import 'package:barbearia_jl_app/app/data/model/auth_model.dart';
 import 'package:barbearia_jl_app/app/data/model/schedule_model.dart';
 import 'package:barbearia_jl_app/app/data/repository/schedule_repository.dart';
 import 'package:barbearia_jl_app/app/routes/app_routes.dart';
@@ -26,18 +27,31 @@ class HomeController extends GetxController {
   // Page 1
   RxList<Schedule> listSchedules = <Schedule>[].obs;
   
+  // Page 3
+  Auth auth;
+
+
   @override
   void onInit() {
-    loadData();
+    // loadData();
     super.onInit();
+    
   }
 
-  void loadData() async{
-    listSchedules.assignAll(await repository.getAll());
+  void onReady()
+  {
+    super.onReady();
+    loadData();
   }
 
   void choiceIndex(int index){
     selectedIndex.value = index;
+  }
+
+  void loadData() async{
+    await repository.getAll().then((value){
+      listSchedules.assignAll(value);
+    });
   }
 
   void logout(){

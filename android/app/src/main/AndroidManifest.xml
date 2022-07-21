@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.jlbarbearia.barbearia_jl_app">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="barbearia_jl_app"
         android:name="${applicationName}"

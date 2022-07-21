@@ -1,8 +1,11 @@
 // Imagens da pasta assets >> https://drive.google.com/drive/folders/1oM5aVAx-Q-UoddSv9yQj4uvDe5O1VZ7O?usp=sharing
 
+import 'package:barbearia_jl_app/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Page3 extends StatelessWidget {
+  final controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -19,7 +22,7 @@ class Page3 extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Login do Usuário',
+                  '',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),

@@ -8,11 +8,10 @@ class ScheduleRepository {
 
 final ScheduleApiClient apiClient = Get.find<ScheduleApiClient>();
 
-getAll() async{
+Future<List<Schedule>> getAll() async{
   List<Schedule> list = <Schedule>[];
   var response = await apiClient.getAll();
   response.forEach((e) {
-    // print(Schedule.fromJson(e).toJson()); 
     list.add(Schedule.fromJson(e));
   });
 

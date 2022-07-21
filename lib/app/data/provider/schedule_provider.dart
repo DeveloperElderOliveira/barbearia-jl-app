@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:barbearia_jl_app/app/data/base_url.dart';
-import 'package:barbearia_jl_app/app/data/model/auth_model.dart';
 import 'package:barbearia_jl_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,13 +12,14 @@ final http.Client httpClient = http.Client();
 final box = GetStorage('barbearia-jl');
 
 getAll() async {
+
   try{
-    String token = Auth.fromJson(box.read('auth')).accessToken;
+    String token = box.read('auth').accessToken;
       var response = await http.get(
         Uri.parse("$baseUrl/schedules"),
         headers: {"Authorization" : 'Bearer ' + token}
         );
-      print(response);
+      
       if (response.statusCode == 200) {
         return json.decode(response.body);
       }else{
