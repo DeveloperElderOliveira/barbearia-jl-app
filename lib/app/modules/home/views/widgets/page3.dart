@@ -22,8 +22,8 @@ class Page3 extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  '${controller.auth.user.name}',
+                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 25.0),
                 ),
               ),
             ),
@@ -51,24 +51,24 @@ class Page3 extends StatelessWidget {
                           onPressed: () {},
                         ),
                         Text(
-                          'Carteira',
+                          'Pagamentos',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Image.asset('assets/truck.png'),
-                          onPressed: () {},
-                        ),
-                        Text(
-                          'Entregas',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     IconButton(
+                    //       icon: Image.asset('assets/truck.png'),
+                    //       onPressed: () {},
+                    //     ),
+                    //     Text(
+                    //       'Entregas',
+                    //       style: TextStyle(fontWeight: FontWeight.bold),
+                    //     )
+                    //   ],
+                    // ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -77,7 +77,7 @@ class Page3 extends StatelessWidget {
                           onPressed: () {},
                         ),
                         Text(
-                          'Pagamentos',
+                          'Agendamentos',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -90,7 +90,7 @@ class Page3 extends StatelessWidget {
                           onPressed: () {},
                         ),
                         Text(
-                          'Suporte',
+                          'Avaliações',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )
                       ],
@@ -126,17 +126,17 @@ class Page3 extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(),
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                title: Text('FAQ'),
-                subtitle: Text('Perguntas e respostas'),
-                leading: Image.asset('assets/faq.png'),
-                trailing: Icon(Icons.chevron_right),
-                onTap: () {},
-              ),
-            ),
+            // Divider(),
+            // Container(
+            //   color: Colors.white,
+            //   child: ListTile(
+            //     title: Text('FAQ'),
+            //     subtitle: Text('Perguntas e respostas'),
+            //     leading: Image.asset('assets/faq.png'),
+            //     trailing: Icon(Icons.chevron_right),
+            //     onTap: () {},
+            //   ),
+            // ),
             Divider(),
             Container(
               color: Colors.white,
@@ -145,7 +145,9 @@ class Page3 extends StatelessWidget {
                 subtitle: Text('Deslogar do usuário'),
                 leading: Image.asset('assets/faq.png'),
                 trailing: Icon(Icons.chevron_right),
-                onTap: () {},
+                onTap: () {
+                  controller.logout();
+                },
               ),
             ),
             Divider(),

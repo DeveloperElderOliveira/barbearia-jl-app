@@ -33,15 +33,14 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    // loadData();
+    auth = box.read('auth');
     super.onInit();
-    
   }
 
   void onReady()
   {
-    super.onReady();
     loadData();
+    super.onReady();
   }
 
   void choiceIndex(int index){

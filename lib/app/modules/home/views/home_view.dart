@@ -16,13 +16,6 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: const Text('Barbearia JL'),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                controller.logout();
-              },
-              icon: const Icon(Icons.logout))
-        ],
       ),
       // ignore: prefer_const_constructors
       body: Column(
