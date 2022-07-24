@@ -1,22 +1,20 @@
 
-import 'package:barbearia_jl_app/app/data/provider/schedule_provider.dart';
+import 'package:barbearia_jl_app/app/data/model/company_model.dart';
+import 'package:barbearia_jl_app/app/data/provider/company_provider.dart';
 import 'package:get/get.dart';
 
-import '../model/schedule_model.dart';
+class CompanyRepository {
 
-class ScheduleRepository {
+final CompanyApiClient apiClient = Get.find<CompanyApiClient>();
 
-final ScheduleApiClient apiClient = Get.find<ScheduleApiClient>();
-
-Future<List<Schedule>> getAll() async{
-  List<Schedule> list = <Schedule>[];
+Future<List<Company>> getAll() async{
+  List<Company> list = <Company>[];
   var response = await apiClient.getAll();
   if (response != null){
     response.forEach((e) {
-      list.add(Schedule.fromJson(e));
+      list.add(Company.fromJson(e));
     });
   }
-
   return list;
 }
 // getId(id){

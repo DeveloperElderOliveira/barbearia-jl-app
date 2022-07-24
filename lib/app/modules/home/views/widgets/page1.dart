@@ -77,6 +77,7 @@ class Page1 extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.call, color: Colors.black,),
+                                    Text("(71) 99316-4658"),
                                     SizedBox(width: 5,),
                                     Icon(Icons.mail_outline, color: Colors.black,),
                                     Expanded(

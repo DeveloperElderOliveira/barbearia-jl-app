@@ -1,6 +1,8 @@
 // Imagens da pasta assets >> https://drive.google.com/drive/folders/1oM5aVAx-Q-UoddSv9yQj4uvDe5O1VZ7O?usp=sharing
 
+import 'package:barbearia_jl_app/app/global/widgets/snackbar_custom.dart';
 import 'package:barbearia_jl_app/app/modules/home/controllers/home_controller.dart';
+import 'package:barbearia_jl_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +13,7 @@ class Page3 extends StatelessWidget {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
-        color: Colors.teal,
+        color: Colors.black,
         child: ListView(
           children: <Widget>[
             CircleAvatar(
@@ -48,7 +50,9 @@ class Page3 extends StatelessWidget {
                       children: <Widget>[
                         IconButton(
                           icon: Image.asset('assets/wallet.png'),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed(Routes.PAYMENTS);
+                          },
                         ),
                         Text(
                           'Pagamentos',
@@ -74,7 +78,9 @@ class Page3 extends StatelessWidget {
                       children: <Widget>[
                         IconButton(
                           icon: Image.asset('assets/card.png'),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed(Routes.SCHEDULES);
+                          },
                         ),
                         Text(
                           'Agendamentos',
@@ -87,7 +93,9 @@ class Page3 extends StatelessWidget {
                       children: <Widget>[
                         IconButton(
                           icon: Image.asset('assets/contact_us.png'),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed(Routes.RATINGS);
+                          },
                         ),
                         Text(
                           'Avaliações',
@@ -111,7 +119,9 @@ class Page3 extends StatelessWidget {
                   height: 30,
                 ),
                 trailing: Icon(Icons.chevron_right),
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.SETTINGS);
+                },
               ),
             ),
             Divider(),
@@ -124,6 +134,10 @@ class Page3 extends StatelessWidget {
                 trailing: Icon(
                   Icons.chevron_right,
                 ),
+                onTap: (){
+                  // Get.toNamed(Routes.SETTINGS);
+                  SnackbarCustom.warning("Aviso","Recurso não disponível para essa versão.");
+                },
               ),
             ),
             // Divider(),

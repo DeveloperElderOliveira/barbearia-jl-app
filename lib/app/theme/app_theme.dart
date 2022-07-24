@@ -11,6 +11,6 @@ final ThemeData appThemeData = ThemeData(
   accentColor: Colors.cyan[600],
   // ignore: prefer_const_constructors
   appBarTheme: AppBarTheme(
-    color: Colors.cyan,
+    color: Colors.black,
   ),
 );
