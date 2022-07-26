@@ -15,7 +15,7 @@ class Page2 extends StatelessWidget {
             children: [
                Obx(
                   () =>  Visibility(
-                    visible: controller.listCompanies.length > 0,
+                    visible: controller.markers.length > 0,
                     child: GoogleMap(
                       markers: Set.of(controller.markers),
                       initialCameraPosition: CameraPosition(
@@ -42,7 +42,7 @@ class Page2 extends StatelessWidget {
                           SizedBox(height: 16.0),
                           FloatingActionButton(
                             onPressed: () {
-                              // controller.loadDataCompaniesMarkers();
+                              controller.loadDataCompaniesMarkers();
                             },
                             materialTapTargetSize: MaterialTapTargetSize.padded,
                             child: const Icon(Icons.refresh, size: 36.0),

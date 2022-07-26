@@ -1,4 +1,4 @@
-import 'package:barbearia_jl_app/app/data/model/employee_model.dart';
+import 'package:barbearia_jl_app/app/data/model/service_model.dart';
 
 class Company {
   int id;
@@ -7,7 +7,9 @@ class Company {
   String longitude;
   String phone;
   String socialLink;
-  List<Employee> employee;
+  String address;
+  String image;
+  List<Service> services;
 
   Company(
       {this.id,
@@ -16,7 +18,9 @@ class Company {
       this.longitude,
       this.phone,
       this.socialLink,
-      this.employee});
+      this.address,
+      this.image,
+      this.services});
 
   Company.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -25,10 +29,12 @@ class Company {
     longitude = json['longitude'];
     phone = json['phone'];
     socialLink = json['social_link'];
-    if (json['employees'] != null) {
-      employee = <Employee>[];
-      json['employees'].forEach((v) {
-        employee.add(new Employee.fromJson(v));
+    address = json['address'];
+    image = json['image'];
+    if (json['services'] != null) {
+      services = <Service>[];
+      json['services'].forEach((v) {
+        services.add(new Service.fromJson(v));
       });
     }
   }
@@ -41,8 +47,10 @@ class Company {
     data['longitude'] = this.longitude;
     data['phone'] = this.phone;
     data['social_link'] = this.socialLink;
-    if (this.employee != null) {
-      data['employees'] = this.employee.map((v) => v.toJson()).toList();
+    data['address'] = this.address;
+    data['image'] = this.image;
+    if (this.services != null) {
+      data['services'] = this.services.map((v) => v.toJson()).toList();
     }
     return data;
   }

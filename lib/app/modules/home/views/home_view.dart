@@ -26,7 +26,7 @@ class HomeView extends GetView<HomeController> {
               visible: controller.selectedIndex.value == 0,
               child: Page1())),
           Obx(() => Visibility(
-              visible: controller.selectedIndex.value == 1,
+              visible: controller.selectedIndex.value == 1 && controller.markers.length > 0,
               child: Page2())),
           Obx(() => Visibility(
               visible: controller.selectedIndex.value == 2,

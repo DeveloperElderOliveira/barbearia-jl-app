@@ -1,4 +1,5 @@
 import 'package:barbearia_jl_app/app/data/model/schedule_model.dart';
+import 'package:barbearia_jl_app/app/global/constants.dart';
 import 'package:barbearia_jl_app/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -51,21 +52,7 @@ class Page1 extends StatelessWidget {
                                     ),)
                                   ],
                                 ),
-                                SizedBox(height: 5,),
-                                Row(
-                                  children: [
-                                    Text("Avaliação", style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w500
-                                    ),),
-                                    SizedBox(width: 5,),
-                                    Row(
-                                      children: (List<int>.generate(5, (i) => i + 1)).map((e){
-                                        return Icon(Icons.star);
-                                      }).toList(),
-                                    ),
-                                  ],
-                                ),
+                                SizedBox(height: 5,),     
                                 SizedBox(height: 5,),
                                 Container(
                                   height: 0.5,
@@ -76,14 +63,16 @@ class Page1 extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(Icons.call, color: Colors.black,),
-                                    Text("(71) 99316-4658"),
-                                    SizedBox(width: 5,),
-                                    Icon(Icons.mail_outline, color: Colors.black,),
+                                    Icon(Icons.person, color: Colors.black,),
+                                    Text(" Elder Oliveira"),
+                                    SizedBox(width: 20,),
+                                    Text(" | "),
+                                    // Icon(Icons.call, color: Colors.black,),
+                                    Text(" (71) 99316-4658"),
                                     Expanded(
                                       child: Container(),
                                     ),
-                                    Text("R\$50,00", style: TextStyle(
+                                    Text("R\$ ${formatcurrency.format(schedule.service.price)}", style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600

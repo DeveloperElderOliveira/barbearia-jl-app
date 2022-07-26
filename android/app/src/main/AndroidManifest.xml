@@ -6,9 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
    
    <application
-        android:label="barbearia_jl_app"
+        android:label="BarbeariaJL"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/barbeariajl">
         <activity
             android:name=".MainActivity"
             android:exported="true"

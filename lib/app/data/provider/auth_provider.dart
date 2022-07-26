@@ -1,5 +1,4 @@
-// import 'dart:convert';
-import 'package:barbearia_jl_app/app/data/base_url.dart';
+import 'package:barbearia_jl_app/app/global/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

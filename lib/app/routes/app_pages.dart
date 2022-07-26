@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/company/bindings/company_binding.dart';
+import '../modules/company/views/company_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/initial/bindings/initial_binding.dart';
@@ -12,6 +14,8 @@ import '../modules/ratings/bindings/ratings_binding.dart';
 import '../modules/ratings/views/ratings_view.dart';
 import '../modules/schedules/bindings/schedules_binding.dart';
 import '../modules/schedules/views/schedules_view.dart';
+import '../modules/service/bindings/service_binding.dart';
+import '../modules/service/views/service_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
@@ -69,6 +73,16 @@ class AppPages {
       name: Routes.SETTINGS,
       page: () => SettingsView(),
       binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: Routes.COMPANY,
+      page: () => CompanyView(),
+      binding: CompanyBinding(),
+    ),
+    GetPage(
+      name: Routes.SERVICE,
+      page: () => ServiceView(),
+      binding: ServiceBinding(),
     ),
   ];
 }

@@ -87,8 +87,8 @@ class HomeController extends GetxController {
           Marker(
               markerId: MarkerId(e.id.toString()),
               position: LatLng(
-                double.tryParse(e.latitude),
-                double.tryParse(e.longitude),
+                double.tryParse('-12.833471'),
+                double.tryParse('-38.472161'),
               ),
               // infoWindow: InfoWindow(
               //   title: e.name,
@@ -106,8 +106,8 @@ class HomeController extends GetxController {
                     FlatButton(
                       color: Get.theme.primaryColor,
                       onPressed: () {
-                        // Get.back();
-                        // openCompany(e);
+                        Get.back();
+                        openCompany(e);
                       },
                       child: Text("Abrir"),
                     ),
@@ -126,6 +126,10 @@ class HomeController extends GetxController {
         );
       });
     }
+  }
+
+  void openCompany(Company company){
+    Get.toNamed(Routes.COMPANY, arguments: company);
   }
 
   void onMapCreated(GoogleMapController controller) {
