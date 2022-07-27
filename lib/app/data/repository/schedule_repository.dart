@@ -1,4 +1,5 @@
 
+// import 'package:barbearia_jl_app/app/data/model/service_model.dart';
 import 'package:barbearia_jl_app/app/data/provider/schedule_provider.dart';
 import 'package:get/get.dart';
 
@@ -19,17 +20,9 @@ Future<List<Schedule>> getAll() async{
 
   return list;
 }
-// getId(id){
-//   return api.getId(id);
-// }
-// delete(id){
-//   return api.delete(id);
-// }
-// edit(obj){
-//   return api.edit( obj );
-// }
-// add(obj){
-//     return api.add( obj );
-// }
+
+add(String date, String time, serviceId, userId) async{
+  return Schedule.fromJson(await apiClient.add(date, time, serviceId,userId));
+}
 
 }

@@ -128,8 +128,12 @@ class HomeController extends GetxController {
     }
   }
 
-  void openCompany(Company company){
-    Get.toNamed(Routes.COMPANY, arguments: company);
+  void openCompany(Company company) async{
+    var result = await Get.toNamed(Routes.COMPANY, arguments: company);
+    if(result != null){
+      selectedIndex.value = 0;
+      loadDataSchedules();
+    }
   }
 
   void onMapCreated(GoogleMapController controller) {

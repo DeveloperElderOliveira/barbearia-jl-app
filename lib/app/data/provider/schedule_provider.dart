@@ -1,39 +1,61 @@
-import 'dart:convert';
 import 'package:barbearia_jl_app/app/global/constants.dart';
 import 'package:barbearia_jl_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 
-class ScheduleApiClient {
+class ScheduleApiClient extends GetConnect{
 
-final http.Client httpClient = http.Client();
 final box = GetStorage('barbearia-jl');
 
 getAll() async {
 
-  try{
-    String token = box.read('auth').accessToken;
-      var response = await http.get(
-        Uri.parse("$baseUrl/schedules"),
+  String token = box.read('auth').accessToken;
+      var response = await get(
+        "$baseUrl/schedules",
         headers: {"Authorization" : 'Bearer ' + token}
         );
       
-      if (response.statusCode == 200) {
-        return json.decode(response.body);
-      }else{
-        Get.defaultDialog(title: "Error",content: Text(json.decode(response.body)['error']));
-        // ignore: prefer_interpolation_to_compose_strings, avoid_print
-        print('erro -get: '+ response.body);
+      if(response.hasError){
+        box.erase();
+        Get.offAllNamed(Routes.WELCOME);
       }
-  }catch (err){
-    Get.defaultDialog(title: "Error Catch",content: Text("$err"));
-    print(err);
-    box.erase();
-    Get.offAllNamed(Routes.WELCOME);
-  }
-    return null;
+
+      if (response.statusCode == 200) {
+        return response.body;
+      }else{
+        Get.defaultDialog(title: "Error",content: Text("${response.body['error']}"));
+      }
+
+}
+
+add(String date, String time, serviceId, userId) async{
+  var auth = box.read('auth');
+      var token = auth.accessToken;
+      var dt = date.split('/');
+      var newDate = dt[2] + '-' + dt[1] + '-' +dt[0] + ' ' + time + ':00';
+      
+      var response = await post(
+        "$baseUrl/schedules",
+        {
+          "scheduling_date" : "$newDate",
+          "user_id" : "$userId",
+          "employee_id" : "1",
+          "service_id" : "$serviceId"
+        },
+        headers: {"Authorization" : 'Bearer ' + token}
+        ); 
+
+      if (response.hasError){
+        Get.defaultDialog(title: "Error Catch", content: Text("${response.statusText}"));
+      }
+
+      if (response.statusCode == 200) {
+        return response.body;
+      }else{
+        Get.defaultDialog(title: "Error",content: Text("${response.body['error']}"));
+        return null;
+      }
 }
 
 }

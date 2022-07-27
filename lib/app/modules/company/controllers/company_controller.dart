@@ -7,8 +7,11 @@ class CompanyController extends GetxController {
 
   final Company company = Get.arguments;
 
-  void createScheduling(Service service){
-    Get.toNamed(Routes.SCHEDULES);
+  void createScheduling(Service service) async{
+    var result = await Get.toNamed(Routes.SCHEDULES, arguments: service);
+    if(result != null){
+      Get.back(result: "OK");
+    }
   }
 
 }
