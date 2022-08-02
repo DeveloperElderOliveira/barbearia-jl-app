@@ -8,7 +8,6 @@ class AuthApiClient  extends GetConnect{
   Future<Map<String,dynamic>> login(String email,String password) async{
 
      var response = await post(baseUrl + "/login", {"email": email, "password": password});
-
      if(response.statusCode == 200){
       return response.body;
     }else{

@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:barbearia_jl_app/app/data/model/auth_model.dart';
 import 'package:barbearia_jl_app/app/data/model/company_model.dart';
 import 'package:barbearia_jl_app/app/data/model/schedule_model.dart';
+import 'package:barbearia_jl_app/app/data/model/service_model.dart';
 import 'package:barbearia_jl_app/app/data/repository/company_repository.dart';
 import 'package:barbearia_jl_app/app/data/repository/schedule_repository.dart';
 import 'package:barbearia_jl_app/app/routes/app_routes.dart';
@@ -16,7 +17,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../global/widgets/navigation_item.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with StateMixin{
 
   //Essential
   final box = GetStorage('barbearia-jl');
@@ -29,7 +30,8 @@ class HomeController extends GetxController {
 
   List<NavigationItem> items = [
     NavigationItem(const Icon(Icons.home), const Text('Início'), Colors.black),
-    NavigationItem(const Icon(Icons.search), const Text('Procurar'), Colors.pinkAccent),
+    NavigationItem(const Icon(Icons.schedule), const Text('Agendar'), Colors.black),
+    NavigationItem(const Icon(Icons.g_translate), const Text('Localizar'),Get.theme.primaryColor),
     NavigationItem(const Icon(Icons.person_outline), const Text('Perfil'), Colors.black)
   ];
 
@@ -43,7 +45,7 @@ class HomeController extends GetxController {
   LatLng lastMapPosition;
   Position currentLocation;
   Set<Marker> markers = {};
-
+  List<Service> servicosSelecionados = [];
   RxList<Company> listCompanies = <Company>[].obs;
   // Page 3
   Auth auth;
@@ -51,16 +53,11 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    loadDataSchedules();
+    loadCompanies();
     auth = box.read('auth');
     getUserLocation();
     super.onInit();
-  }
-
-  void onReady()
-  {
-    loadDataSchedules();
-    loadDataCompaniesMarkers();
-    super.onReady();
   }
 
   void choiceIndex(int index){
@@ -70,15 +67,23 @@ class HomeController extends GetxController {
   void loadDataSchedules() async{
     await scheduleRepository.getAll().then((value){
       listSchedules.assignAll(value);
+      if(value.length > 0) change(value, status: RxStatus.success());
+      else change(null, status: RxStatus.empty());
+    }, onError: (err){
+      change(null, status: RxStatus.error('Houve um erro na requisição.'));
     });
   }
-
-  void loadDataCompaniesMarkers() async{
+  void loadCompanies() async {
     await companyRepository.getAll().then((value){
       listCompanies.assignAll(value);
     });
-    loadMarkers();
   }
+  // void loadDataCompaniesMarkers() async{
+  //   await companyRepository.getAll().then((value){
+  //     listCompanies.assignAll(value);
+  //   });
+  //   loadMarkers();
+  // }
 
   void loadMarkers() {
     if (listCompanies.length > 0) {
@@ -133,6 +138,14 @@ class HomeController extends GetxController {
     if(result != null){
       selectedIndex.value = 0;
       loadDataSchedules();
+    }
+  }
+
+  void createScheduling() async{
+    print(servicosSelecionados);
+    var result = await Get.toNamed(Routes.SCHEDULES, arguments: servicosSelecionados);
+    if(result != null){
+      Get.back(result: "OK");
     }
   }
 

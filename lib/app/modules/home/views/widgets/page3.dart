@@ -1,173 +1,58 @@
-// Imagens da pasta assets >> https://drive.google.com/drive/folders/1oM5aVAx-Q-UoddSv9yQj4uvDe5O1VZ7O?usp=sharing
 
-import 'package:barbearia_jl_app/app/global/widgets/snackbar_custom.dart';
+
 import 'package:barbearia_jl_app/app/modules/home/controllers/home_controller.dart';
-import 'package:barbearia_jl_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Page3 extends StatelessWidget {
   final controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
-        color: Colors.black,
-        child: ListView(
-          children: <Widget>[
-            CircleAvatar(
-              maxRadius: 48,
-              backgroundImage: AssetImage('assets/logo.png'),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '${controller.auth.user.name}',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 25.0),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 16.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
-                ),
-                color: Colors.white,
-              ),
-              height: 150,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Image.asset('assets/wallet.png'),
-                          onPressed: () {
-                            Get.toNamed(Routes.PAYMENTS);
-                          },
-                        ),
-                        Text(
-                          'Pagamentos',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
+          child: Stack(
+            children: [
+               Obx(
+                  () =>  Visibility(
+                    visible: controller.markers.length > 0,
+                    child: GoogleMap(
+                      markers: Set.of(controller.markers),
+                      initialCameraPosition: CameraPosition(
+                        target: controller.center.value,
+                        zoom: 25.0,
+                      ),
+                      onMapCreated: controller.onMapCreated,
+                      zoomGesturesEnabled: true,
+                      onCameraMove: controller.onCameraMove,
+                      myLocationEnabled: true,
+                      compassEnabled: false,
+                      myLocationButtonEnabled: true,
+                      mapToolbarEnabled: false,
                     ),
-                    // Column(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: <Widget>[
-                    //     IconButton(
-                    //       icon: Image.asset('assets/truck.png'),
-                    //       onPressed: () {},
-                    //     ),
-                    //     Text(
-                    //       'Entregas',
-                    //       style: TextStyle(fontWeight: FontWeight.bold),
-                    //     )
-                    //   ],
-                    // ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Image.asset('assets/card.png'),
-                          onPressed: () {
-                            Get.toNamed(Routes.SCHEDULES);
-                          },
-                        ),
-                        Text(
-                          'Agendamentos',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
+                  ),
+               ),
+                  Padding(
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 50.0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 16.0),
+                          FloatingActionButton(
+                            onPressed: () {
+                              // controller.loadDataCompaniesMarkers();
+                            },
+                            materialTapTargetSize: MaterialTapTargetSize.padded,
+                            child: const Icon(Icons.refresh, size: 36.0),
+                          ),
+                        ],
+                      ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Image.asset('assets/contact_us.png'),
-                          onPressed: () {
-                            Get.toNamed(Routes.RATINGS);
-                          },
-                        ),
-                        Text(
-                          'Avaliações',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                title: Text('Configurações'),
-                subtitle: Text('Definição de privacidade'),
-                leading: Image.asset(
-                  'assets/settings_icon.png',
-                  fit: BoxFit.scaleDown,
-                  width: 30,
-                  height: 30,
-                ),
-                trailing: Icon(Icons.chevron_right),
-                onTap: () {
-                  Get.toNamed(Routes.SETTINGS);
-                },
-              ),
-            ),
-            Divider(),
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                title: Text('Ajuda & Suporte'),
-                subtitle: Text('Centro de ajuda e suporte'),
-                leading: Image.asset('assets/support.png'),
-                trailing: Icon(
-                  Icons.chevron_right,
-                ),
-                onTap: (){
-                  // Get.toNamed(Routes.SETTINGS);
-                  SnackbarCustom.warning("Aviso","Recurso não disponível para essa versão.");
-                },
-              ),
-            ),
-            // Divider(),
-            // Container(
-            //   color: Colors.white,
-            //   child: ListTile(
-            //     title: Text('FAQ'),
-            //     subtitle: Text('Perguntas e respostas'),
-            //     leading: Image.asset('assets/faq.png'),
-            //     trailing: Icon(Icons.chevron_right),
-            //     onTap: () {},
-            //   ),
-            // ),
-            Divider(),
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                title: Text('Sair'),
-                subtitle: Text('Deslogar do usuário'),
-                leading: Image.asset('assets/faq.png'),
-                trailing: Icon(Icons.chevron_right),
-                onTap: () {
-                  controller.logout();
-                },
-              ),
-            ),
-            Divider(),
-          ],
-        ),
-      ),
-    );
+                  ),
+            ],
+          ),
+      );
   }
 }

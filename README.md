@@ -1,6 +1,6 @@
-# barbearia_jl_app
+# Barbearia JL App
 
-A new Flutter project.
+Um projeto Flutter, Aplicativo para agendamento e pagamento antecipado na barbearia JL.
 
 ## Getting Started
 

@@ -12,7 +12,9 @@ class SchedulesController extends GetxController {
   Auth auth;
   final box = GetStorage('barbearia-jl');
   var userId;
-  Service service = Get.arguments;
+  List<Service> service = Get.arguments;
+  var servicesName = '';
+  int servicesPrice = 0;
   final repository = Get.find<ScheduleRepository>();
   final formkey = GlobalKey<FormState>();
   DateTime datePicked;
@@ -25,9 +27,21 @@ class SchedulesController extends GetxController {
   void onInit(){
     auth = box.read('auth');
     userId = auth.user.id;
+    concatInfoServices();
     super.onInit();
   }
-
+  void concatInfoServices()
+  {
+    service.forEach((element) {
+      if (servicesName != ''){
+        servicesName += ' & ' + element.name; 
+      }else{
+        servicesName = element.name;
+      }
+      servicesPrice += element.price;
+    });
+    
+  }
   void openCalendar() async{
     FocusScope.of(Get.context).requestFocus(new FocusNode());
     datePicked = await showDatePicker(
@@ -38,34 +52,27 @@ class SchedulesController extends GetxController {
       );
       if (datePicked != null && datePicked != DateTime.now()){
         dateController.text = DateFormat("dd/MM/yyyy").format(DateTime.parse(datePicked.toString()));
+        loadHorarios();
       }
-  }
-
-  void openClock() async{
-    TimeOfDay time = TimeOfDay.now();
-    FocusScope.of(Get.context).requestFocus(new FocusNode());
-    timePicked = await showTimePicker(
-      context: Get.context,
-       initialTime: time,
-       );
-    if (timePicked != null && timePicked != time) {
-      timeController.text = timePicked.format(Get.context);
-      time = timePicked;
-    }
   }
 
   void openEmployeePage(){
     // Get.toNamed(Routes.EMPLOYEE);
   }
 
-  void onsave() async{
+  void onsave() {
+    print('aki');
     if(formkey.currentState.validate()){
-      var serviceId = service.id;
-      var response = await repository.add(dateController.text, timeController.text, serviceId, userId);
-      if(response != null){
-        print('ok1');
-        Get.back(result: "OK");
-      }
+      // var serviceId = service.id;
+      // var response = await repository.add(dateController.text, timeController.text, serviceId, userId);
+      // if(response != null){
+      //   print('ok1');
+      //   Get.back(result: "OK");
+      // }
     }
+  }
+  void loadHorarios()
+  {
+    print('teste cara da minha');
   }
 }

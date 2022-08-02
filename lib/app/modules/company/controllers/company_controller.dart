@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class CompanyController extends GetxController {
 
-  final Company company = Get.arguments;
+  final Company company = Get.arguments.length > 0 ? Get.arguments : '';
 
   void createScheduling(Service service) async{
     var result = await Get.toNamed(Routes.SCHEDULES, arguments: service);
